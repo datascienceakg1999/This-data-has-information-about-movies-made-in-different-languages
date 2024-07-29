@@ -1,0 +1,24 @@
+import pandas as pd
+
+
+data = {
+    'language': ['English', 'English', 'Hindi', 'Hindi', 'Spanish', 'Spanish'],
+    'revenue': [1000, 1200, 500, 700, 800, 900],
+    'cost': [200, 300, 100, 150, 200, 250]
+}
+
+df = pd.DataFrame(data)
+
+# Calculate ROI for each movie
+df['ROI'] = (df['revenue'] - df['cost']) / df['cost']
+
+# Group by language and calculate average ROI
+average_roi_by_language = df.groupby('language')['ROI'].mean()
+
+# Identify the language with the highest average ROI
+highest_average_roi_language = average_roi_by_language.idxmax()
+highest_average_roi_value = average_roi_by_language.max()
+
+print(f"The language with the highest average ROI is {highest_average_roi_language} with an average ROI of {highest_average_roi_value:.2f}.")
+
+
